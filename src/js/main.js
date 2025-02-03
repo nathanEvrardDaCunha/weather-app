@@ -4,10 +4,8 @@ const sum = (a, b) => {
 
 export {sum};
 
-const fetchByCity = () => {
+const fetchByCity = (city = 'Paris') => {
   const api = import.meta.env.VITE_WEATHER_API;
-  const city = 'Paris';
-
   return new Promise((resolve, reject) => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api}`)
     .then((response) => {
@@ -22,13 +20,25 @@ const fetchByCity = () => {
   })
 }
 
-const displayWeather = async () => {
+const displayWeather = async (city = 'Paris') => {
   try {
-    const result = await fetchByCity();
+    const result = await fetchByCity(city);
     console.log(result);
   } catch (error) {
     console.log(error);
   }
 }
 
-displayWeather();
+const cityFormElement = document.getElementById('city-form');
+const cityNameInput = document.getElementById('city-name');
+
+cityFormElement.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const city = cityNameInput.value;
+  displayWeather(city);
+})
+
+cityFormElement.addEventListener('reset', (event) => {
+  event.preventDefault();
+  cityNameInput.value = '';
+})
