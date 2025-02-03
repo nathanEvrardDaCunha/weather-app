@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { sum } from "../js/main";
+import { describe, expect, it } from 'vitest';
+import { sum } from '../js/main';
 
 describe('sum', () => {
     it('should return the addition of two number', () => {
@@ -9,5 +9,5 @@ describe('sum', () => {
         const result = sum(first, second);
 
         expect(result).toBe(5);
-    })
-})
+    });
+});

@@ -1,56 +1,70 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-  <!-- Need to add a icon to the page -->
+<html lang="en">
+    <head>
+        <!-- Need to add a icon to the page -->
 
-  <!-- Add meta tags -->
-  <meta charset='UTF-8'>
-  <title>Free Weather Dashboard</title>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <meta name='keywords' content='weather, api, dashboard, frontend'>
-  <meta name='description' content='Free and simple dashboard to get weather information everywhere around the world.'>
-  <meta name='robots' content='noindex, nofollow'>
-  <meta name='author' content='EVRARD-DA CUNHA Nathan'>
-  <link rel='canonical' href='https://freeweatherdashboard.com'>
+        <!-- Add meta tags -->
+        <meta charset="UTF-8" />
+        <title>Free Weather Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="weather, api, dashboard, frontend" />
+        <meta
+            name="description"
+            content="Free and simple dashboard to get weather information everywhere around the world."
+        />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="author" content="EVRARD-DA CUNHA Nathan" />
+        <link rel="canonical" href="https://freeweatherdashboard.com" />
 
-  <!-- Add OG tag -->
-  <meta name='og:title' content='Weather Dashboard'>
-  <meta name='og:type' content='page'>
-  <meta name='og:url' content='https://freeweatherdashboard.com'>
-  <meta name='og:image' content='http://ia.media-imdb.com/rock.jpg'>
-  <meta name='og:site_name' content='Free Weather Dashboard'>
-  <meta name='og:description' content='Free and simple dashboard to get weather information everywhere around the world.'>
+        <!-- Add OG tag -->
+        <meta name="og:title" content="Weather Dashboard" />
+        <meta name="og:type" content="page" />
+        <meta name="og:url" content="https://freeweatherdashboard.com" />
+        <meta name="og:image" content="http://ia.media-imdb.com/rock.jpg" />
+        <meta name="og:site_name" content="Free Weather Dashboard" />
+        <meta
+            name="og:description"
+            content="Free and simple dashboard to get weather information everywhere around the world."
+        />
 
-  <!-- Add css -->
-  <link rel='stylesheet' href='src/css/main.css'>
+        <!-- Add css -->
+        <link rel="stylesheet" href="src/css/main.css" />
 
-  <!-- Add script -->
-  <script src='src/js/main.js' type='module' defer></script>
-</head>
-<body>
-  <!-- TODO: Create a header with navbar ? -->
-  <!-- TODO: Create a skip navigation menu to go to specific part of the page, with keyboard support -->
-  
-  <h1>Weather Dashboard</h1>
-  
-  <!-- TODO: Create a form to get weather data from specific location -->
-   <!-- Don't forget to make the form secure -->
-    <!-- Add a submit and reset button -->
-     <!-- Use proper semantic like <label>, <fieldset> and <legend> -->
+        <!-- Add script -->
+        <script src="src/js/main.js" type="module" defer></script>
+    </head>
+    <body>
+        <!-- TODO: Create a header with navbar ? -->
+        <!-- TODO: Create a skip navigation menu to go to specific part of the page, with keyboard support -->
 
-  <main>
-    <section>
-      <h2>Weather search bar</h2>
-      <form id="city-form">
-        <fieldset>
-          <legend>Search weather by city's name</legend>
-          <label for="city-name">City's name</label>
-          <input type="text" id="city-name" name="city-name" placeholder="Paris" required>
-          <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
-        </fieldset>
-      </form>
-    </section>
-  </main>
-</body>
+        <h1>Weather Dashboard</h1>
+
+        <!-- TODO: Create a form to get weather data from specific location -->
+        <!-- Don't forget to make the form secure -->
+        <!-- Add a submit and reset button -->
+        <!-- Use proper semantic like <label>, <fieldset> and <legend> -->
+
+        <main>
+            <section>
+                <h2>Weather search bar</h2>
+                <form id="city-form">
+                    <fieldset>
+                        <legend>Search weather by city's name</legend>
+                        <label for="city-name">City's name</label>
+                        <input
+                            type="text"
+                            id="city-name"
+                            name="city-name"
+                            placeholder="Paris"
+                            required
+                        />
+                        <button type="submit">Submit</button>
+                        <button type="reset">Reset</button>
+                    </fieldset>
+                </form>
+            </section>
+        </main>
+
+        <!-- TODO: Create footer -->
+    </body>
 </html>
