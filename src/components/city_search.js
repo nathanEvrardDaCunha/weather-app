@@ -1,7 +1,9 @@
 const CITY_FORM_ELEMENT = document.getElementById('city-form');
 const CITY_NAME_INPUT = document.getElementById('city-name');
+const CITY_ERROR_ELEMENT = document.getElementById('city-error');
 const SHORTEST_CITY_NAME_WORLDWIDE = 1; // Sweden city name
 const LONGUEST_CITY_NAME_WORLDWIDE = 85; // Taumata fullname
+const CITY_INFORMATION_SECTION = document.getElementById('city-information');
 
 class FormError extends Error {
     constructor(message) {
@@ -72,6 +74,89 @@ const verifyData = (name, data) => {
 };
 
 // TODO: Separate this file into DataVerificator ; DataFetchor ; DataDisplayor ?
+// TODO: Replace Paris magic letters ?
+const fetchByCity = (city = 'Paris', unit = 'metric') => {
+    const api = import.meta.env.VITE_WEATHER_API;
+    return new Promise((resolve, reject) => {
+        fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api}&units=${unit}`
+        )
+            .then((response) => {
+                return response.json();
+            })
+            .then((value) => {
+                // TODO: Replace this magic number
+                if (value['cod'] == 404) {
+                    reject(value);
+                }
+                resolve(value);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+};
+
+const displayErrorMessage = (message) => {
+    CITY_ERROR_ELEMENT.textContent = message;
+};
+
+const displayWeatherData = (data) => {
+    // TODO: Replace magic value
+    console.log(data);
+
+    const cityName = data['name'];
+    const country = data['sys']['country'];
+    const coordLatitude = data['coord']['lat'];
+    const coordLongitude = data['coord']['lon'];
+    const visibility = data['visibility'];
+    const weatherMain = data['weather'][0]['main'];
+    const windDegre = data['wind']['deg'];
+    const windSpeed = data['wind']['speed'];
+    const clouds = data['clouds']['all'];
+    const temperatureFeeling = data['main']['feels_like'];
+    const humidity = data['main']['humidity'];
+    const pressure = data['main']['pressure'];
+    const temp = data['main']['temp'];
+    const tempMax = data['main']['temp_max'];
+    const tempMin = data['main']['temp_min'];
+
+    // const
+
+    // const parsedData = JSON.parse(data);
+    // console.log(parsedData);
+
+    // CITY_INFORMATION_SECTION.innerHTML = `
+    // <p>${parsedData.weather.main}: ${parsedData.weather.description}</p>
+    // `;
+
+    CITY_INFORMATION_SECTION.innerHTML = `
+    <p>City: ${cityName}</p>
+    <p>Coordonate: latitude ${coordLatitude} and longitude ${coordLongitude}</p>
+    <p>${country}</p>
+    <p>Main: ${weatherMain}</p>
+    <p>Clouds: ${clouds}</p>
+    <p>Visibility: ${visibility}</p>
+    <p>Wind: ${windDegre} degree and for ${windSpeed} speed</p>
+    <p>Feels like: ${temperatureFeeling}</p>
+    <p>Humidity: ${humidity}</p>
+    <p>Pressure: ${pressure}</p>
+    <p>Average Temp: ${temp}</p>
+    <p>Min Temp: ${tempMin}</p>
+    <p>Max Temp: ${tempMax}</p>
+    `;
+};
+
+// TODO: Replace Paris magic letters ?
+const displayWeather = async (city = 'Paris') => {
+    try {
+        const result = await fetchByCity(city, 'imperial');
+        // console.log(result);
+        displayWeatherData(result);
+    } catch (error) {
+        displayErrorMessage(error.message);
+    }
+};
 
 CITY_FORM_ELEMENT.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -81,12 +166,10 @@ CITY_FORM_ELEMENT.addEventListener('submit', (event) => {
 
     const verificationErrors = verifyData(name, formatedCity);
     if (verificationErrors === 0) {
-        console.log('Good');
+        displayWeather(formatedCity);
     } else {
-        console.log('Bad' + verificationErrors.message);
+        displayErrorMessage(verificationErrors.message);
     }
-
-    // displayWeather(city);
 });
 
 // TODO: Create informative message ?

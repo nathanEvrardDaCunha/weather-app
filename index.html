@@ -49,7 +49,7 @@
         <!-- Use proper semantic like <label>, <fieldset> and <legend> -->
 
         <main>
-            <section>
+            <section id="city-section">
                 <h2>Weather search bar</h2>
                 <form id="city-form">
                     <fieldset>
@@ -62,11 +62,16 @@
                             placeholder="Paris"
                             required
                         />
+                        <!-- Add toggle to choose between Metric and Imperial units -->
                         <button type="submit">Submit</button>
                         <button type="reset">Reset</button>
                     </fieldset>
                 </form>
+                <section>
+                    <p id="city-error"></p>
+                </section>
             </section>
+            <section id="city-information"></section>
         </main>
 
         <!-- TODO: Create footer -->
