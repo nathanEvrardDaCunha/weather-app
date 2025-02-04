@@ -3,7 +3,6 @@
     <head>
         <!-- Need to add a icon to the page -->
 
-        <!-- Add meta tags -->
         <meta charset="UTF-8" />
         <title>Free Weather Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +15,6 @@
         <meta name="author" content="EVRARD-DA CUNHA Nathan" />
         <link rel="canonical" href="https://freeweatherdashboard.com" />
 
-        <!-- Add OG tag -->
         <meta name="og:title" content="Weather Dashboard" />
         <meta name="og:type" content="page" />
         <meta name="og:url" content="https://freeweatherdashboard.com" />
@@ -27,15 +25,9 @@
             content="Free and simple dashboard to get weather information everywhere around the world."
         />
 
-        <!-- Add css -->
-        <link rel="stylesheet" href="src/components/city_search.css" />
+        <!-- <link rel="stylesheet" href="src/components/city_search.css" /> -->
 
-        <!-- Add script -->
-        <script
-            src="src/components/city_search.js"
-            type="module"
-            defer
-        ></script>
+        <script src="src/service/city_search.js" type="module" defer></script>
     </head>
     <body>
         <!-- TODO: Create a header with navbar ? -->
@@ -43,10 +35,7 @@
 
         <h1>Weather Dashboard</h1>
 
-        <!-- TODO: Create a form to get weather data from specific location -->
         <!-- Don't forget to make the form secure -->
-        <!-- Add a submit and reset button -->
-        <!-- Use proper semantic like <label>, <fieldset> and <legend> -->
 
         <main>
             <section id="city-section">
@@ -55,13 +44,7 @@
                     <fieldset>
                         <legend>Search weather by city's name</legend>
                         <label for="city-name">City's name</label>
-                        <input
-                            type="text"
-                            id="city-name"
-                            name="city-name"
-                            placeholder="Paris"
-                            required
-                        />
+                        <input type="text" id="city-name" name="city-name" placeholder="Paris" required />
                         <!-- Add toggle to choose between Metric and Imperial units -->
                         <button type="submit">Submit</button>
                         <button type="reset">Reset</button>

@@ -1,70 +1,24 @@
+import { CITY_API, CITY_DATA } from '../config/api-config';
+import { CONSTANT } from '../config/const-config';
+import { trimValue, lowercaseValue } from '../utils/formators';
+import { isNull, isUndefined, isTooLong, isTooShort, isNotString, isAlphabetic } from '../utils/validators';
+
 const CITY_FORM_ELEMENT = document.getElementById('city-form');
 const CITY_NAME_INPUT = document.getElementById('city-name');
 const CITY_ERROR_ELEMENT = document.getElementById('city-error');
-const SHORTEST_CITY_NAME_WORLDWIDE = 1; // Sweden city name
-const LONGUEST_CITY_NAME_WORLDWIDE = 85; // Taumata fullname
 const CITY_INFORMATION_SECTION = document.getElementById('city-information');
-
-class FormError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = 'FormError';
-    }
-}
 
 // TODO: Check data => (Create test ?)
 // TODO: Format data => (Create test ?)
 // TODO: Sanitize data => (Create test ?)
 // TODO: Display data to HTML tags
-const formatData = (value) => {
-    return value.toLowerCase().trim();
-};
-
-const isNull = (name, value) => {
-    if (value === null) {
-        throw new FormError(`> ERROR: ${name} is null !`);
-    }
-};
-
-const isUndefined = (name, value) => {
-    if (value === undefined) {
-        throw new FormError(`> ERROR: ${name} is undefined !`);
-    }
-};
-
-const isTooShort = (name, value, limiter) => {
-    if (value.length < limiter) {
-        throw new FormError(`> ERROR: ${name} is too short !`);
-    }
-};
-
-const isTooLong = (name, value, limiter) => {
-    if (value.length > limiter) {
-        throw new FormError(`> ERROR: ${name} is too long !`);
-    }
-};
-
-const isNotString = (name, value) => {
-    if (typeof value !== 'string') {
-        throw new FormError(`> ERROR: ${name} is not a string !`);
-    }
-};
-
-const isAlphabetic = (name, value) => {
-    const regex = /^[A-Za-z]+$/;
-    if (!value.match(regex)) {
-        throw new FormError(
-            `> ERROR: ${name} contain characters other than letters !`
-        );
-    }
-};
 
 const verifyData = (name, data) => {
     try {
         isNull(name, data);
         isUndefined(name, data);
-        isTooShort(name, data, SHORTEST_CITY_NAME_WORLDWIDE);
-        isTooLong(name, data, LONGUEST_CITY_NAME_WORLDWIDE);
+        isTooShort(name, data, CONSTANT.CITY_MIN_LENGTH);
+        isTooLong(name, data, CONSTANT.CITY_MAX_LENGTH);
         isNotString(name, data);
         isAlphabetic(name, data);
         return 0;
@@ -75,42 +29,29 @@ const verifyData = (name, data) => {
 
 // TODO: Separate this file into DataVerificator ; DataFetchor ; DataDisplayor ?
 // TODO: Replace Paris magic letters ?
-const fetchByCity = (city = 'Paris', unit = 'metric') => {
-    const api = import.meta.env.VITE_WEATHER_API;
-    return new Promise((resolve, reject) => {
-        fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api}&units=${unit}`
-        )
-            .then((response) => {
-                return response.json();
-            })
-            .then((value) => {
-                // TODO: Replace this magic number
-                if (value['cod'] == 404) {
-                    reject(value);
-                }
-                resolve(value);
-            })
-            .catch((error) => {
-                reject(error);
-            });
-    });
-};
 
 const displayErrorMessage = (message) => {
     CITY_ERROR_ELEMENT.textContent = message;
+};
+
+// TEMPORARY
+const getNestedData = (obj, path) => {
+    return path.reduce((current, key) => {
+        return current?.[key];
+    }, obj);
 };
 
 const displayWeatherData = (data) => {
     // TODO: Replace magic value
     console.log(data);
 
-    const cityName = data['name'];
-    const country = data['sys']['country'];
+    const cityName = getNestedData(data, CITY_DATA.NAME);
+    const country = getNestedData(data, CITY_DATA.COUNTRY);
+
     const coordLatitude = data['coord']['lat'];
     const coordLongitude = data['coord']['lon'];
     const visibility = data['visibility'];
-    const weatherMain = data['weather'][0]['main'];
+    const weatherMain = getNestedData(data, CITY_DATA.WEATHER);
     const windDegre = data['wind']['deg'];
     const windSpeed = data['wind']['speed'];
     const clouds = data['clouds']['all'];
@@ -147,11 +88,32 @@ const displayWeatherData = (data) => {
     `;
 };
 
+// TEMPORARY
+function fetchByCity(city, unit) {
+    city ??= CITY_API.DEFAULT_CITY;
+    unit ??= CITY_API.DEFAULT_UNIT;
+
+    return new Promise((resolve, reject) => {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${CITY_API.API_KEY}&units=${unit}`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((value) => {
+                if (getNestedData(value, CITY_API.ERROR) === CITY_API.ERROR_CODE.NOT_FOUND) {
+                    reject(value);
+                }
+                resolve(value);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+}
 // TODO: Replace Paris magic letters ?
-const displayWeather = async (city = 'Paris') => {
+const displayWeather = async (city = CITY_API.DEFAULT_CITY) => {
     try {
         const result = await fetchByCity(city, 'imperial');
-        // console.log(result);
+        displayErrorMessage('');
         displayWeatherData(result);
     } catch (error) {
         displayErrorMessage(error.message);
@@ -161,7 +123,10 @@ const displayWeather = async (city = 'Paris') => {
 CITY_FORM_ELEMENT.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const formatedCity = formatData(String(CITY_NAME_INPUT.value));
+    // const formatedCity = formatData(String(CITY_NAME_INPUT.value));
+
+    let formatedCity = trimValue('city name', CITY_NAME_INPUT.value);
+    formatedCity = lowercaseValue('city name', formatedCity);
     const name = 'City';
 
     const verificationErrors = verifyData(name, formatedCity);
