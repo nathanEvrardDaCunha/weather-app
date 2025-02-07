@@ -6,22 +6,16 @@ class FetcherError extends Error {
 }
 
 export class Fetcher {
-    #city;
-    #unit;
+    #values;
     #constant;
 
-    constructor(city, unit, constant) {
-        this.#city = city;
-        this.#unit = unit;
+    constructor(values, constant) {
+        this.#values = values;
         this.#constant = constant;
     }
 
-    get city() {
-        return this.#city;
-    }
-
-    get unit() {
-        return this.#unit;
+    get values() {
+        return this.#values;
     }
 
     get constant() {
@@ -34,8 +28,17 @@ export class Fetcher {
         }, obj);
     }
 
+    isImperial() {
+        if (this.values.get('imperial') === true) {
+            return 'imperial';
+        }
+        return 'metric';
+    }
+
     async fetchCity() {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${this.constant.API_KEY}&units=${this.unit}`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.values.get('city')}&appid=${
+            this.constant.API_KEY
+        }&units=${this.isImperial()}`;
 
         return fetch(url)
             .then((response) => {

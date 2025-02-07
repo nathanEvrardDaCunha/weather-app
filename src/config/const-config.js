@@ -1,5 +1,5 @@
 export const CONSTANT = {
-    ALPHABETICAL_REGEX: /^[A-Za-z]+$/,
+    ALPHABETICAL_REGEX: /^[A-Za-z ]+$/,
     NULL: null,
     UNDEFINED: undefined,
     STRING: 'string',

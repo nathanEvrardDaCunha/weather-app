@@ -39,6 +39,7 @@ export class Messenger {
         `;
     }
 
+    // IDEA: Need to implement a way to clean the data display in case there is a error.
     displayData(data) {
         this.htmlInformation.innerHTML = `
         <p>City: ${this.getNestedData(data, this.constant.NAME)}</p>

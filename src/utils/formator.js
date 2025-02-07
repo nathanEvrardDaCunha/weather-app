@@ -6,45 +6,36 @@ class FormatorError extends Error {
 }
 
 export class Formator {
-    #name;
-    #value;
+    #values;
     #constant;
 
-    constructor(name, value, constant) {
-        this.#name = name;
-        this.#value = value;
+    constructor(values, constant) {
+        this.#values = values;
         this.#constant = constant;
     }
 
-    get name() {
-        return this.#name;
-    }
-
-    get value() {
-        return this.#value;
+    get values() {
+        return this.#values;
     }
 
     get constant() {
         return this.#constant;
     }
 
-    set value(value) {
-        this.#value = value;
-    }
-
-    // BUG: Can't input 'new zealand'
     trim() {
-        if (typeof this.value != this.constant.STRING) {
-            throw new FormatorError(`${this.name} is not a string !`);
-        }
-        this.value = this.value.trim();
+        this.values.forEach((value, key) => {
+            if (typeof value == this.constant.STRING) {
+                this.values.set(key, value.trim());
+            }
+        });
     }
 
     lowercase() {
-        if (typeof this.value != this.constant.STRING) {
-            throw new FormatorError(`${this.name} is not a string !`);
-        }
-        this.value = this.value.toLowerCase();
+        this.values.forEach((value, key) => {
+            if (typeof value == this.constant.STRING) {
+                this.values.set(key, value.toLowerCase());
+            }
+        });
     }
 
     format() {

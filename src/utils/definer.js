@@ -6,22 +6,16 @@ class DefinerError extends Error {
 }
 
 export class Definer {
-    #name;
-    #value;
+    #values;
     #constant;
 
-    constructor(name, value, constant) {
-        this.#name = name;
-        this.#value = value;
+    constructor(values, constant) {
+        this.#values = values;
         this.#constant = constant;
     }
 
-    get name() {
-        return this.#name;
-    }
-
-    get value() {
-        return this.#value;
+    get values() {
+        return this.#values;
     }
 
     get constant() {
@@ -29,28 +23,25 @@ export class Definer {
     }
 
     isNull() {
-        if (this.value === this.constant.NULL) {
-            throw new DefinerError(`${this.name} is null !`);
-        }
+        this.values.forEach((value, key) => {
+            if (value === this.constant.NULL) {
+                throw new DefinerError(`${key} is null !`);
+            }
+        });
     }
 
     isUndefined() {
-        if (this.value === this.constant.UNDEFINED) {
-            throw new DefinerError(`${this.name} is undefined !`);
-        }
-    }
-
-    isNotString() {
-        if (typeof this.value != this.constant.STRING) {
-            throw new DefinerError(`${this.name} is not a string !`);
-        }
+        this.values.forEach((value, key) => {
+            if (value === this.constant.UNDEFINED) {
+                throw new DefinerError(`${key} is undefined !`);
+            }
+        });
     }
 
     define() {
         try {
             this.isNull();
             this.isUndefined();
-            this.isNotString();
         } catch (error) {
             throw error;
         }

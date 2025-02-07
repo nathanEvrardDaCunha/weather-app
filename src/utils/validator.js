@@ -6,22 +6,16 @@ class ValidatorError extends Error {
 }
 
 export class Validator {
-    #name;
-    #value;
+    #values;
     #constant;
 
-    constructor(name, value, constant) {
-        this.#name = name;
-        this.#value = value;
+    constructor(values, constant) {
+        this.#values = values;
         this.#constant = constant;
     }
 
-    get name() {
-        return this.#name;
-    }
-
-    get value() {
-        return this.#value;
+    get values() {
+        return this.#values;
     }
 
     get constant() {
@@ -29,22 +23,33 @@ export class Validator {
     }
 
     isTooShort() {
-        if (this.value.length < this.constant.CITY_MIN_LENGTH) {
-            throw new ValidatorError(`${this.name} is too short !`);
-        }
+        this.values.forEach((value, key) => {
+            if (typeof value == this.constant.STRING) {
+                if (value.length < this.constant.CITY_MIN_LENGTH) {
+                    throw new ValidatorError(`${key} is too short !`);
+                }
+            }
+        });
     }
 
     isTooLong() {
-        if (this.value.length > this.constant.CITY_MAX_LENGTH) {
-            throw new ValidatorError(`${this.name} is too long !`);
-        }
+        this.values.forEach((value, key) => {
+            if (typeof value == this.constant.STRING) {
+                if (value.length > this.constant.CITY_MAX_LENGTH) {
+                    throw new ValidatorError(`${key} is too long !`);
+                }
+            }
+        });
     }
 
-    // BUG: Can't input 'new zealand'
     isAlphabetic() {
-        if (!this.value.match(this.constant.ALPHABETICAL_REGEX)) {
-            throw new ValidatorError(`${this.name} contain characters other than letters !`);
-        }
+        this.values.forEach((value, key) => {
+            if (typeof value == this.constant.STRING) {
+                if (!value.match(this.constant.ALPHABETICAL_REGEX)) {
+                    throw new ValidatorError(`${key} contain characters other than letters or space !`);
+                }
+            }
+        });
     }
 
     validate() {
