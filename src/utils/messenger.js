@@ -3,6 +3,8 @@ export class Messenger {
     #htmlInformation;
     #constant;
 
+    // FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE
+
     constructor(htmlError, htmlInformation, constant) {
         this.#htmlError = htmlError;
         this.#htmlInformation = htmlInformation;
@@ -40,6 +42,7 @@ export class Messenger {
     }
 
     // IDEA: Need to implement a way to clean the data display in case there is a error.
+    // IDEA: Refactor to make it all more readable, simpler and conscise ?
     displayData(data) {
         this.htmlInformation.innerHTML = `
         <p>City: ${this.getNestedData(data, this.constant.NAME)}</p>

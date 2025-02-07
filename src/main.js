@@ -6,16 +6,20 @@ import { CITY_API, CITY_DATA } from './config/api-config';
 import { Messenger } from './utils/messenger';
 import { Fetcher } from './utils/fetcher';
 
+// FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE
+
 const cityForm = document.getElementById('city-form');
 const cityName = document.getElementById('city-name');
 const cityError = document.getElementById('city-error');
 const cityInformation = document.getElementById('city-information');
 const imperialToggle = document.getElementById('imperial-toggle');
+const userLocation = document.getElementById('user-location');
 
 // IDEA: Rename files to DataValidator ; DataFetcher ; DataDisplayer ; DataDefiner ; DataFormator ?
 // Might be a good idea to do that later when there are more data type other than just city name (example: longitude and latitude).
 // TEST: Create unit test ?
 
+// REFACTOR: Need to refactor everything to be more readable and simpler.
 cityForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -60,4 +64,27 @@ cityForm.addEventListener('reset', (event) => {
     event.preventDefault();
 
     cityName.value = '';
+});
+
+// REFACTOR: Need to refactor everything to be more readable and simpler.
+userLocation.addEventListener('click', async () => {
+    const fetcher = new Fetcher('null', CITY_API);
+    const messenger = new Messenger(cityError, cityInformation, CITY_DATA);
+
+    try {
+        const result = await fetcher.fetchCurrentLocation();
+
+        const formValues = new Map();
+        formValues.set('city', result);
+        formValues.set('imperial', 'metric');
+
+        const finalFetcher = new Fetcher(formValues, CITY_API);
+        const finalResult = await finalFetcher.fetchCity();
+
+        messenger.displayData(finalResult);
+
+        messenger.displayError(MESSAGE.EMPTY_MESSAGE);
+    } catch (error) {
+        messenger.displayError(error);
+    }
 });

@@ -5,6 +5,8 @@ class FetcherError extends Error {
     }
 }
 
+// FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE
+
 export class Fetcher {
     #values;
     #constant;
@@ -53,5 +55,32 @@ export class Fetcher {
             .catch((error) => {
                 throw error;
             });
+    }
+
+    getLocation() {
+        return new Promise((resolve, reject) => {
+            return navigator.geolocation.getCurrentPosition((position) => {
+                resolve(position), reject(new FetcherError(`Problem during user location fetching !`));
+            });
+        });
+    }
+
+    async fetchCurrentLocation() {
+        try {
+            const response = await this.getLocation();
+            const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${response['coords']['latitude']}&longitude=${response['coords']['longitude']}&localityLanguage=en`;
+            return fetch(url)
+                .then((data) => {
+                    return data.json();
+                })
+                .then((result) => {
+                    return result.city;
+                })
+                .catch((error) => {
+                    throw error;
+                });
+        } catch (error) {
+            throw new FetcherError(`Problem during user location fetching !`);
+        }
     }
 }

@@ -5,6 +5,8 @@ class FormatorError extends Error {
     }
 }
 
+// FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE
+
 export class Formator {
     #values;
     #constant;

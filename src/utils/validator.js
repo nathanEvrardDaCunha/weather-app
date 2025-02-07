@@ -5,6 +5,8 @@ class ValidatorError extends Error {
     }
 }
 
+// FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE
+
 export class Validator {
     #values;
     #constant;

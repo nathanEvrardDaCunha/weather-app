@@ -12,6 +12,8 @@ export const CITY_API = {
     CITY_NAME: 'City name',
 };
 
+// FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE
+
 export const CITY_DATA = {
     NAME: ['name'],
     COUNTRY: ['sys', 'country'],
