@@ -24,34 +24,20 @@ cityForm.addEventListener('submit', async (event) => {
     // If not, it mean they stack upon themselves.
 
     // TODO: Add and get the Unit (metric or imperial) from the form.
-    let cleanedData = CONSTANT.UNDEFINED;
     try {
         const definor = new Definer(CITY_API.CITY_NAME, cityName.value, CONSTANT);
         definor.define();
-
         const formator = new Formator(definor.name, definor.value, definor.constant);
         formator.format();
-
         const validator = new Validator(formator.name, formator.value, formator.constant);
         validator.validate();
 
-        cleanedData = validator.value;
-
-        messenger.displayError(MESSAGE.EMPTY_MESSAGE);
-    } catch (error) {
-        messenger.displayError(error);
-    }
-
-    // TODO: Make the 'metric' parameter a variable from the form.
-    let result = CONSTANT.UNDEFINED;
-    try {
-        const fetcher = new Fetcher(cleanedData, 'metric', CITY_API);
-        result = await fetcher.fetchCity();
-
+        const fetcher = new Fetcher(validator.value, 'metric', CITY_API);
+        const result = await fetcher.fetchCity();
         messenger.displayData(result);
+
         messenger.displayError(MESSAGE.EMPTY_MESSAGE);
     } catch (error) {
-        console.log(error);
         messenger.displayError(error);
     }
 });
