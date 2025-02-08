@@ -1,5 +1,5 @@
 import { DataUtils } from './data-utils';
-import { API_CONST_DATA } from '../config/api-config';
+import { API_CONST_DATA } from '../config/global-const';
 
 export class DataDisplayer extends DataUtils {
     static displayMessage(message, element) {

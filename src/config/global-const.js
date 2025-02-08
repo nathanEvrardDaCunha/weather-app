@@ -1,16 +1,6 @@
-export const CITY_API = {
+export const API_CONST_CONF = {
     API_KEY: import.meta.env.VITE_WEATHER_API,
-    // Useless for now but might be usefull for later modular use.
-    // API_REQUEST_URL: 'https://api.openweathermap.org/data/2.5/weather',
-    // API_REQUEST_CITY: `?q=${city}`,
-    // API_REQUEST_KEY: `&appid=${key}`,
-    // API_REQUEST_UNIT: `&units=${unit}`,
-    DEFAULT_CITY: 'Paris',
-    DEFAULT_UNIT: 'metric',
-    CITY_NAME: 'City name',
 };
-
-// FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE
 
 export const API_CONST_DATA = {
     NAME: ['name'],
@@ -28,4 +18,10 @@ export const API_CONST_DATA = {
     TEMP_AVG: ['main', 'temp'],
     TEMP_MIN: ['main', 'temp_min'],
     TEMP_MAX: ['main', 'temp_max'],
+};
+
+export const GLOBAL_CONST = {
+    ALPHABETICAL_REGEX: /^[A-Za-z -]+$/,
+    CITY_MAX_LENGTH: 85,
+    CITY_MIN_LENGTH: 1,
 };

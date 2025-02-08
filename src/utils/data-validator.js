@@ -1,5 +1,5 @@
 import { DataUtils } from './data-utils';
-import { CONSTANT } from '../config/const-config';
+import { GLOBAL_CONST } from '../config/global-const';
 
 class DataValidatorError extends Error {
     constructor(message) {
@@ -24,9 +24,9 @@ export class DataValidator extends DataUtils {
             }
 
             if (key === 'city') {
-                if (value.length > CONSTANT.CITY_MAX_LENGTH) {
+                if (value.length > GLOBAL_CONST.CITY_MAX_LENGTH) {
                     throw new DataValidatorError(
-                        `Error: ${key} is longer than ${CONSTANT.CITY_MAX_LENGTH} characters !`
+                        `Error: ${key} is longer than ${GLOBAL_CONST.CITY_MAX_LENGTH} characters !`
                     );
                 }
             }
@@ -48,9 +48,9 @@ export class DataValidator extends DataUtils {
             }
 
             if (key === 'city') {
-                if (value.length < CONSTANT.CITY_MIN_LENGTH) {
+                if (value.length < GLOBAL_CONST.CITY_MIN_LENGTH) {
                     throw new DataValidatorError(
-                        `Error: ${key} is shorter than ${CONSTANT.CITY_MIN_LENGTH} characters !`
+                        `Error: ${key} is shorter than ${GLOBAL_CONST.CITY_MIN_LENGTH} characters !`
                     );
                 }
             }
@@ -72,7 +72,7 @@ export class DataValidator extends DataUtils {
             }
 
             if (key === 'city') {
-                if (!value.match(CONSTANT.ALPHABETICAL_REGEX)) {
+                if (!value.match(GLOBAL_CONST.ALPHABETICAL_REGEX)) {
                     throw new DataValidatorError(`Error: ${key} contain forbidden characters !`);
                 }
             }

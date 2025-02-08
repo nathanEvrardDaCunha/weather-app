@@ -1,3 +1,4 @@
+import { API_CONST_CONF } from '../config/global-const';
 import { DataUtils } from './data-utils';
 
 class DataFetcherError extends Error {
@@ -33,7 +34,7 @@ export class DataFetcher extends DataUtils {
         const url =
             `https://api.openweathermap.org/data/2.5/weather` +
             `?q=${values.get('city')}` +
-            `&appid=${import.meta.env.VITE_WEATHER_API}` +
+            `&appid=${API_CONST_CONF.API_KEY}` +
             `&units=${this.isImperial(values)}`;
 
         return fetch(url)
