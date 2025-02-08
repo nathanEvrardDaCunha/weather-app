@@ -1,4 +1,4 @@
-import { WeatherUtils } from './weather-utils';
+import { DataUtils } from './data-utils';
 
 class DataFormatorError extends Error {
     constructor(message) {
@@ -7,7 +7,7 @@ class DataFormatorError extends Error {
     }
 }
 
-export class DataFormator extends WeatherUtils {
+export class DataFormator extends DataUtils {
     static trimValues(values) {
         values.forEach((value, key) => {
             if (this.isNull(value)) {

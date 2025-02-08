@@ -1,4 +1,4 @@
-export class WeatherUtils {
+export class DataUtils {
     static isNull(value) {
         return value === null;
     }

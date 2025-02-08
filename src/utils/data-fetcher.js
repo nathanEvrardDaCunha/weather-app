@@ -1,4 +1,4 @@
-import { WeatherUtils } from './weather-utils';
+import { DataUtils } from './data-utils';
 
 class DataFetcherError extends Error {
     constructor(message) {
@@ -7,7 +7,7 @@ class DataFetcherError extends Error {
     }
 }
 
-export class DataFetcher extends WeatherUtils {
+export class DataFetcher extends DataUtils {
     static isImperial(values) {
         values.forEach((value, key) => {
             if (this.isNull(value)) {
@@ -42,7 +42,7 @@ export class DataFetcher extends WeatherUtils {
             })
             .then((result) => {
                 if (this.getNestedData(result, ['cod']) == 404) {
-                    throw new DataFetcherError(`The data related to this city hasn't been found !`);
+                    throw new DataFetcherError(`Error: The data related to this city hasn't been found !`);
                 }
                 return result;
             })
@@ -54,7 +54,7 @@ export class DataFetcher extends WeatherUtils {
     static getLocation() {
         return new Promise((resolve, reject) => {
             return navigator.geolocation.getCurrentPosition((position) => {
-                resolve(position), reject(new DataFetcherError(`Problem during user location fetching !`));
+                resolve(position), reject(new DataFetcherError(`Error: Problem during user location fetching !`));
             });
         });
     }
@@ -80,7 +80,7 @@ export class DataFetcher extends WeatherUtils {
                     throw error;
                 });
         } catch (error) {
-            throw new DataFetcherError(`Problem during user location fetching !`);
+            throw new DataFetcherError(`Error: Problem during user location fetching !`);
         }
     }
 }

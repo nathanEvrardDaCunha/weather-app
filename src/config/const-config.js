@@ -3,6 +3,8 @@ export const CONSTANT = {
     NULL: null,
     UNDEFINED: undefined,
     STRING: 'string',
+    CITY_MAX_LENGTH: 85,
+    CITY_MIN_LENGTH: 1,
 };
 
 // FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE

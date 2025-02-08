@@ -12,7 +12,7 @@ export const CITY_API = {
 
 // FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE
 
-export const CITY_DATA = {
+export const API_CONST_DATA = {
     NAME: ['name'],
     COUNTRY: ['sys', 'country'],
     LATITUDE: ['coord', 'lat'],
