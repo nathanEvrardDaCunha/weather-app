@@ -34,9 +34,6 @@ cityForm.addEventListener('submit', async (event) => {
     // IDEA: May be a good idea to add default values in case there is missing inputs.
 
     try {
-        // IDEA: Might refactor the definer class as Static class.
-        // IDEA: Return the updated values in a single variable instead of just throwing errors.
-
         // BUG: "    " is not a city and should be refused.
 
         formValues = DataFormator.trimValues(formValues);
@@ -45,10 +42,7 @@ cityForm.addEventListener('submit', async (event) => {
         DataValidator.isShort(formValues);
         const result = await DataFetcher.fetchWeather(formValues);
 
-        // const fetcher = new Fetcher(validator.values, CITY_API);
-        // const result = await fetcher.fetchCity();
         messenger.displayData(result);
-
         messenger.displayError(MESSAGE.EMPTY_MESSAGE);
     } catch (error) {
         messenger.displayData(MESSAGE.EMPTY_MESSAGE);
@@ -65,21 +59,18 @@ cityForm.addEventListener('reset', (event) => {
 
 // REFACTOR: Need to refactor everything to be more readable and simpler.
 userLocation.addEventListener('click', async () => {
-    const fetcher = new Fetcher('null', CITY_API);
     const messenger = new Messenger(cityError, cityInformation, CITY_DATA);
 
     try {
-        const result = await fetcher.fetchCurrentLocation();
-
         const formValues = new Map();
-        formValues.set('city', result);
-        formValues.set('imperial', 'metric');
+        formValues.set('city', null);
+        formValues.set('imperial', imperialToggle.checked);
 
-        const finalFetcher = new Fetcher(formValues, CITY_API);
-        const finalResult = await finalFetcher.fetchCity();
+        const location = await DataFetcher.fetchLocation();
+        formValues.set('city', location);
+        const result = await DataFetcher.fetchWeather(formValues);
 
-        messenger.displayData(finalResult);
-
+        messenger.displayData(result);
         messenger.displayError(MESSAGE.EMPTY_MESSAGE);
     } catch (error) {
         messenger.displayError(error);

@@ -50,4 +50,37 @@ export class DataFetcher extends WeatherUtils {
                 throw error;
             });
     }
+
+    static getLocation() {
+        return new Promise((resolve, reject) => {
+            return navigator.geolocation.getCurrentPosition((position) => {
+                resolve(position), reject(new DataFetcherError(`Problem during user location fetching !`));
+            });
+        });
+    }
+
+    static async fetchLocation() {
+        try {
+            const response = await this.getLocation();
+
+            const url =
+                `https://api.bigdatacloud.net/data/reverse-geocode-client` +
+                `?latitude=${response['coords']['latitude']}` +
+                `&longitude=${response['coords']['longitude']}` +
+                `&localityLanguage=en`;
+
+            return fetch(url)
+                .then((data) => {
+                    return data.json();
+                })
+                .then((result) => {
+                    return result.city;
+                })
+                .catch((error) => {
+                    throw error;
+                });
+        } catch (error) {
+            throw new DataFetcherError(`Problem during user location fetching !`);
+        }
+    }
 }
