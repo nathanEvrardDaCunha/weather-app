@@ -1,10 +1,14 @@
 import { CONSTANT, FORM_CONST, MESSAGE } from './config/const-config';
-import { Formator } from './utils/formator';
+// import { Formator } from './utils/formator';
 import { Validator } from './utils/validator';
-import { Definer } from './utils/definer';
+// import { Definer } from './utils/definer';
 import { CITY_API, CITY_DATA } from './config/api-config';
 import { Messenger } from './utils/messenger';
 import { Fetcher } from './utils/fetcher';
+// TEMPORARY SEPERATION
+import { DataFormator } from './utilss/data-formator';
+import { DataValidator } from './utilss/data-validator';
+import { DataFetcher } from './utilss/data-fetcher';
 
 // FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE
 
@@ -15,8 +19,6 @@ const cityInformation = document.getElementById('city-information');
 const imperialToggle = document.getElementById('imperial-toggle');
 const userLocation = document.getElementById('user-location');
 
-// IDEA: Rename files to DataValidator ; DataFetcher ; DataDisplayer ; DataDefiner ; DataFormator ?
-// Might be a good idea to do that later when there are more data type other than just city name (example: longitude and latitude).
 // TEST: Create unit test ?
 
 // REFACTOR: Need to refactor everything to be more readable and simpler.
@@ -25,37 +27,32 @@ cityForm.addEventListener('submit', async (event) => {
 
     const messenger = new Messenger(cityError, cityInformation, CITY_DATA);
 
-    // DOCS: Are all those objects purged after the event ?
-    // If not, it mean they stack upon themselves.
-
-    // const formValues = {
-    //     city: cityName.value,
-    //     unit: imperialToggle.checked,
-    // };
-
-    const formValues = new Map();
+    let formValues = new Map();
     formValues.set('city', cityName.value);
     formValues.set('imperial', imperialToggle.checked);
 
-    // TODO: Add and get the Unit (metric or imperial) from the form.
+    // IDEA: May be a good idea to add default values in case there is missing inputs.
+
     try {
         // IDEA: Might refactor the definer class as Static class.
         // IDEA: Return the updated values in a single variable instead of just throwing errors.
-        const definor = new Definer(formValues, CONSTANT);
-        definor.define();
-        const formator = new Formator(definor.values, CONSTANT);
-        formator.format();
-        const validator = new Validator(formator.values, CONSTANT);
-        validator.validate();
 
-        const fetcher = new Fetcher(validator.values, CITY_API);
-        const result = await fetcher.fetchCity();
+        // BUG: "    " is not a city and should be refused.
+
+        formValues = DataFormator.trimValues(formValues);
+        formValues = DataFormator.lowerCaseValues(formValues);
+        DataValidator.isLong(formValues);
+        DataValidator.isShort(formValues);
+        const result = await DataFetcher.fetchWeather(formValues);
+
+        // const fetcher = new Fetcher(validator.values, CITY_API);
+        // const result = await fetcher.fetchCity();
         messenger.displayData(result);
 
         messenger.displayError(MESSAGE.EMPTY_MESSAGE);
     } catch (error) {
         messenger.displayData(MESSAGE.EMPTY_MESSAGE);
-
+        console.log(error);
         messenger.displayError(error);
     }
 });

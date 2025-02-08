@@ -24,6 +24,7 @@ export class Definer {
         return this.#constant;
     }
 
+    // USELESS NOW
     isNull() {
         this.values.forEach((value, key) => {
             if (value === this.constant.NULL) {
@@ -39,6 +40,7 @@ export class Definer {
             }
         });
     }
+    // USELESS NOW
 
     define() {
         try {

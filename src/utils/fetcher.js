@@ -24,11 +24,13 @@ export class Fetcher {
         return this.#constant;
     }
 
+    // USELESS NOW
     getNestedData(obj, path) {
         return path.reduce((current, key) => {
             return current?.[key];
         }, obj);
     }
+    // USELESS NOW
 
     isImperial() {
         if (this.values.get('imperial') === true) {

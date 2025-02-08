@@ -7,8 +7,6 @@ export const CITY_API = {
     // API_REQUEST_UNIT: `&units=${unit}`,
     DEFAULT_CITY: 'Paris',
     DEFAULT_UNIT: 'metric',
-    ERROR: ['cod'],
-    ERROR_CODE: { NOT_FOUND: 404 },
     CITY_NAME: 'City name',
 };
 

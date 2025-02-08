@@ -23,11 +23,13 @@ export class Messenger {
         return this.#constant;
     }
 
+    // USELESS NOW
     getNestedData(obj, path) {
         return path.reduce((current, key) => {
             return current?.[key];
         }, obj);
     }
+    // USELESS NOW
 
     displayError(error) {
         this.htmlError.innerHTML = `
@@ -43,6 +45,8 @@ export class Messenger {
 
     // IDEA: Need to implement a way to clean the data display in case there is a error.
     // IDEA: Refactor to make it all more readable, simpler and conscise ?
+
+    // BUG: Display "undefined" for everything if there is no data.
     displayData(data) {
         this.htmlInformation.innerHTML = `
         <p>City: ${this.getNestedData(data, this.constant.NAME)}</p>
