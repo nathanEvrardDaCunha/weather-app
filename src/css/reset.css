@@ -1,3 +1,5 @@
+/* OVERALL RESET */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -10,18 +12,14 @@ html {
     line-height: 1.5;
 }
 
-button {
+/* FORM RESET */
+
+fieldset {
     border: none;
-    background-color: transparent;
-    cursor: pointer;
-    font-size: 16px;
 }
 
-a {
+legend {
     font-size: 16px;
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
 }
 
 input {
@@ -30,10 +28,25 @@ input {
     border: none;
 }
 
-fieldset {
+/* BUTTON RESET */
+
+button {
     border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-legend {
+/* LIST RESET */
+
+li {
+    list-style: none;
+}
+
+/* LINK RESET */
+
+a {
     font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
 }
