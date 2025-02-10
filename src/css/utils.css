@@ -34,6 +34,36 @@
     border-radius: var(--border-radius--sm);
 }
 
+/* ----- LINK ----- */
+.link {
+    display: inline-block;
+    color: var(--color--dark);
+    background-color: transparent;
+    text-decoration: underline;
+    transform: scale(1);
+    transition: all var(--animation-duration--quick) ease-in-out;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        background-color: var(--color--light);
+        color: var(--color--dark);
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+.link--light {
+    color: var(--color--light);
+}
+
+/* ----- ADDRESS ----- */
+.address {
+    font-style: normal;
+}
+
 /* ----- TITLE ----- */
 .title {
     transform: scale(1);

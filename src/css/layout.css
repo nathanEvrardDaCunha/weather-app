@@ -27,3 +27,19 @@
         gap: 0;
     }
 }
+
+/* ----- MAIN ----- */
+.main {
+    grid-area: main;
+}
+
+/* ----- FOOTER ----- */
+.footer {
+    grid-area: footer;
+    padding-inline: var(--spacing--lg);
+    padding-block: var(--spacing--lg);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing--lg);
+}
