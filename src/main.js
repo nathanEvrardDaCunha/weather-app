@@ -3,8 +3,6 @@ import { DataValidator } from './utils/data-validator';
 import { DataFetcher } from './utils/data-fetcher';
 import { DataDisplayer } from './utils/data-displayer';
 
-// FIND A WAY TO MAKE THIS FILE MORE READABLE, SIMPLER and CONSCISE
-
 const cityForm = document.getElementById('city-form');
 const cityName = document.getElementById('city-name');
 const cityError = document.getElementById('city-error');
