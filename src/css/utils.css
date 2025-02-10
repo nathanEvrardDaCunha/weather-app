@@ -1,5 +1,4 @@
-/* BUTTON */
-
+/* ----- BUTTON ----- */
 .btn {
     background-color: var(--color--light);
     padding-inline: var(--spacing--md);
@@ -33,4 +32,21 @@
 
 .btn--round {
     border-radius: var(--border-radius--sm);
+}
+
+/* ----- TITLE ----- */
+.title {
+    transform: scale(1);
+    transition: all var(--animation-duration--quick) ease-in-out;
+
+    &:hover,
+    &:focus {
+        transform: scale(0.95);
+    }
+}
+
+/* ----- BACKGROUND ----- */
+.bg--dark {
+    background-color: var(--color--dark);
+    color: var(--color--light);
 }
