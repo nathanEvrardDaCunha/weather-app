@@ -1,0 +1,36 @@
+/* BUTTON */
+
+.btn {
+    background-color: var(--color--light);
+    padding-inline: var(--spacing--md);
+    padding-block: var(--spacing--sm);
+    color: var(--color--dark);
+    transform: scale(1);
+    transition: all var(--animation-duration--quick) ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-color: var(--color--dark);
+        color: var(--color--light);
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+.btn--hollow {
+    background-color: transparent;
+    border: var(--color--light) solid 1px;
+    color: var(--color--light);
+
+    &:hover,
+    &:focus {
+        background-color: var(--color--light);
+        color: var(--color--dark);
+    }
+}
+
+.btn--round {
+    border-radius: var(--border-radius--sm);
+}

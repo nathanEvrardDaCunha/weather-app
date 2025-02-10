@@ -12,7 +12,8 @@
 .header {
     background-color: var(--color--dark);
     color: var(--color--light);
-    padding: var(--spacing--md);
+    padding-inline: var(--spacing--lg);
+    padding-block: var(--spacing--md);
 
     grid-area: header;
 
@@ -44,9 +45,9 @@
 
 /* REFACTOR: Make it more atomic like .btn .btn--hollow... */
 .navbar__link {
-    border: var(--color--light) solid 1px;
     color: var(--color--light);
-    padding: var(--spacing--sm);
+    padding-inline: var(--spacing--lg);
+    padding-block: var(--spacing--sm);
     border-radius: var(--border-radius--sm);
     background-color: transparent;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
