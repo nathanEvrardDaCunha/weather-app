@@ -18,6 +18,39 @@
     }
 }
 
+.btn-dark {
+    background-color: var(--color--dark);
+    color: var(--color--light);
+
+    &:hover,
+    &:focus {
+        background-color: var(--color--light);
+        color: var(--color--dark);
+    }
+}
+
+.btn-danger {
+    background-color: var(--color--danger);
+    color: var(--color--dark);
+
+    &:hover,
+    &:focus {
+        background-color: var(--color--dark);
+        color: var(--color--danger);
+    }
+}
+
+.btn-success {
+    background-color: var(--color--success);
+    color: var(--color--dark);
+
+    &:hover,
+    &:focus {
+        background-color: var(--color--dark);
+        color: var(--color--success);
+    }
+}
+
 .btn--hollow {
     background-color: transparent;
     border: var(--color--light) solid 1px;
