@@ -141,3 +141,16 @@ This document serves as both a reflection of my current learning gaps and a road
 ## Current Status
 
 This README represents a comprehensive post-project review completed after the weather application's initial development. The observations and improvements noted throughout this document were identified during a thorough code review process. While these areas for enhancement have been documented, they remain as future improvement opportunities and have not yet been implemented in the current codebase. This documentation serves as a valuable reference for future iterations of this project and other development work.
+
+## License
+
+Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
+
+This work is licensed under a
+[Creative Commons Attribution 4.0 International License][cc-by].
+
+[![CC BY 4.0][cc-by-image]][cc-by]
+
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
+[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
