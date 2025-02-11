@@ -4,7 +4,7 @@ import { API_CONST_DATA } from '../config/global-const';
 export class DataDisplayer extends DataUtils {
     static displayMessage(message, element) {
         element.innerHTML = `
-        <p>${message}</p>
+        <p class="pd-md">${message}</p>
         `;
     }
 
@@ -15,21 +15,79 @@ export class DataDisplayer extends DataUtils {
 
     static displayData(values, element) {
         element.innerHTML = `
-        <p>City: ${this.getNestedData(values, API_CONST_DATA.NAME)}</p>
-        <p>Country: ${this.getNestedData(values, API_CONST_DATA.COUNTRY)}</p>
-        <p>Latitude: ${this.getNestedData(values, API_CONST_DATA.LATITUDE)}</p>
-        <p>Longitude: ${this.getNestedData(values, API_CONST_DATA.LONGITUDE)}</p>
-        <p>Weather: ${this.getNestedData(values, API_CONST_DATA.WEATHER)}</p>
-        <p>Visibility: ${this.getNestedData(values, API_CONST_DATA.VISIBILITY)}</p>
-        <p>Cloud: ${this.getNestedData(values, API_CONST_DATA.CLOUD)}</p>
-        <p>Humidity: ${this.getNestedData(values, API_CONST_DATA.HUMIDITY)}</p>
-        <p>Pressure: ${this.getNestedData(values, API_CONST_DATA.PRESSURE)}</p>
-        <p>Wind Deg: ${this.getNestedData(values, API_CONST_DATA.WIND_DEG)}</p>
-        <p>Wind Speed: ${this.getNestedData(values, API_CONST_DATA.WIND_SPEED)}</p>
-        <p>Temp Feel: ${this.getNestedData(values, API_CONST_DATA.TEMP_FEEL)}</p>
-        <p>Temp Avg: ${this.getNestedData(values, API_CONST_DATA.TEMP_AVG)}</p>
-        <p>Temp Min: ${this.getNestedData(values, API_CONST_DATA.TEMP_MIN)}</p>
-        <p>Temp Max: ${this.getNestedData(values, API_CONST_DATA.TEMP_MAX)}</p>
+        <div class="pd-md">
+            <table>
+                <caption>Weather Data</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Label</th>
+                        <th scope="col">Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row"><strong>City</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.NAME)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Country</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.COUNTRY)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Latitude</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.LATITUDE)}</th>
+                    </tr>
+                                        <tr>
+                        <td scope="row"><strong>Longitude</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.LONGITUDE)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Weather</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.WEATHER)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Visibility</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.VISIBILITY)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Cloud</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.CLOUD)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Humidity</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.HUMIDITY)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Pressure</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.PRESSURE)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Wind Deg</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.WIND_DEG)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Wind Speed</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.WIND_SPEED)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Temp Feel</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.TEMP_FEEL)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Temp Avg</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.TEMP_AVG)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Temp Min</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.TEMP_MIN)}</th>
+                    </tr>
+                    <tr>
+                        <td scope="row"><strong>Temp Max</strong></th>
+                        <td scope="row">${this.getNestedData(values, API_CONST_DATA.TEMP_MAX)}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         `;
     }
 }

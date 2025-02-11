@@ -31,9 +31,11 @@ label,
 li,
 legend,
 button,
-a {
+a,
+td {
     font-size: var(--font-size--p);
     line-height: var(--line-height--p);
+    font-weight: var(--font-weight--medium);
 }
 
 small {
@@ -46,6 +48,10 @@ em {
     font-size: inherit;
 }
 
+strong {
+    font-weight: var(--font-weight--bolder);
+}
+
 /* FORM RESET */
 fieldset {
     border: none;
@@ -54,6 +60,10 @@ fieldset {
 input {
     cursor: pointer;
     border: none;
+}
+
+label {
+    cursor: pointer;
 }
 
 /* BUTTON RESET */

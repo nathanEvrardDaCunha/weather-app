@@ -5,10 +5,7 @@
         <title>Free Weather Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="keywords" content="weather, api, dashboard, frontend" />
-        <meta
-            name="description"
-            content="Free and simple dashboard to get weather information everywhere around the world."
-        />
+        <meta name="description" content="Free and simple dashboard to get weather information everywhere around the world." />
         <meta name="robots" content="noindex, nofollow" />
         <meta name="author" content="EVRARD-DA CUNHA Nathan" />
         <link rel="canonical" href="https://freeweatherdashboard.com" />
@@ -18,10 +15,7 @@
         <meta name="og:url" content="https://freeweatherdashboard.com" />
         <meta name="og:image" content="http://ia.media-imdb.com/rock.jpg" />
         <meta name="og:site_name" content="Free Weather Dashboard" />
-        <meta
-            name="og:description"
-            content="Free and simple dashboard to get weather information everywhere around the world."
-        />
+        <meta name="og:description" content="Free and simple dashboard to get weather information everywhere around the world." />
 
         <link rel="icon" href="image/favicon.ico" />
         <link rel="stylesheet" href="src/css/main.css" />
@@ -31,31 +25,40 @@
     <body class="container">
         <header class="header bg--dark">
             <h1 class="title">FreeWeather</h1>
-            <a class="btn btn--hollow btn--round" href="https://github.com/nathanEvrardDaCunha/weather-app"
-                >Repository</a
-            >
+            <a class="btn btn--hollow" href="https://github.com/nathanEvrardDaCunha/weather-app">Repository</a>
         </header>
 
         <main class="main">
-            <section id="city-section">
-                <h2>Weather search bar</h2>
-                <button class="btn btn btn-success" type="button" id="user-location">Get User Location</button>
+            <section class="mg-be-lg" id="city-section">
+                <h2 class="text--center">Weather Dashboard</h2>
                 <form id="city-form">
-                    <fieldset>
-                        <legend>Search weather by city's name</legend>
-                        <label for="city-name">City's name</label>
-                        <input type="text" id="city-name" name="city-name" placeholder="Paris" required />
-                        <label for="imperial-toggle">Imperial Toggle</label>
-                        <input type="checkbox" id="imperial-toggle" name="imperial-toggle" />
-                        <button class="btn btn-success" type="submit">Submit</button>
-                        <button class="btn btn-warning" type="reset">Reset</button>
+                    <fieldset class="form">
+                        <legend class="form__legend">Get Weather by City</legend>
+                        <div class="f-column limit">
+                            <label for="city-name">City's name</label>
+                            <input
+                                class="mg-bs-sm form__input"
+                                type="text"
+                                id="city-name"
+                                name="city-name"
+                                placeholder="Paris"
+                                required
+                            />
+                        </div>
+                        <div class="f-row mg-bs-sm limit">
+                            <input type="checkbox" id="imperial-toggle" name="imperial-toggle" />
+                            <label class="mg-is-sm" for="imperial-toggle">Imperial Toggle</label>
+                        </div>
+                        <div class="mg-bs-md form__buttons limit">
+                            <button class="btn btn--hollow-success" type="button" id="user-location">Get User Location</button>
+                            <button class="btn btn-success" type="submit">Submit</button>
+                            <button class="btn btn-warning" type="reset">Reset</button>
+                        </div>
                     </fieldset>
                 </form>
-                <section class="bg--danger">
-                    <p id="city-error"></p>
-                </section>
             </section>
-            <section id="city-information"></section>
+            <section id="city-error" class="bg--danger limit"></section>
+            <section id="city-information" class="bg--information limit"></section>
         </main>
 
         <footer class="footer bg--dark">
@@ -64,15 +67,12 @@
                     <li><strong>Author</strong>: EVRARD-DA CUNHA Nathan</li>
                     <li>
                         <strong>Repository</strong>:
-                        <a class="link link--light" href="https://github.com/nathanEvrardDaCunha/weather-app"
-                            >weather-app</a
-                        >
+                        <a class="link link--light" href="https://github.com/nathanEvrardDaCunha/weather-app">weather-app</a>
                     </li>
                 </ul>
             </address>
-            <small
-                >Content on this site is licensed under a
-                <strong>Creative Commons Attribution 4.0 International license</strong>.
+            <small>
+                Content on this site is licensed under a <strong>Creative Commons Attribution 4.0 International license</strong>.
             </small>
         </footer>
     </body>
