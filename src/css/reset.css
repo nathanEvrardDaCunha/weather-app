@@ -52,7 +52,7 @@ strong {
     font-weight: var(--font-weight--bolder);
 }
 
-/* FORM RESET */
+/* ----- FORM ----- */
 fieldset {
     border: none;
 }
@@ -66,22 +66,19 @@ label {
     cursor: pointer;
 }
 
-/* BUTTON RESET */
-
+/* ----- BUTTON ----- */
 button {
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
 
-/* LIST RESET */
-
+/* ----- LIST ----- */
 li {
     list-style: none;
 }
 
-/* LINK RESET */
-
+/* ----- LINK ----- */
 a {
     text-decoration: none;
     cursor: pointer;

@@ -10,12 +10,8 @@ const cityInformation = document.getElementById('city-information');
 const imperialToggle = document.getElementById('imperial-toggle');
 const userLocation = document.getElementById('user-location');
 
-// TEST: Create unit test ?
-
 cityForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-
-    // IDEA: May be a good idea to add default values in case there is missing inputs.
 
     try {
         let formValues = new Map();

@@ -182,7 +182,8 @@
 .mg-be-lg {
     margin-block-end: var(--spacing--lg);
 }
-/* ----- MARGIN ----- */
+
+/* ----- PADDING ----- */
 .pd-sm {
     padding: var(--spacing--sm);
 }
